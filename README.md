@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>pinkhoon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="falling-hearts"></div>
+
+<!-- PAGE HELLO -->
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<div class="page active" id="page-hello">
+  <div class="bg-decoration">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+  </div>
+
+  <div class="hello-container">
+    <div class="card hello-card">
+      <div class="card-header">
+        <div class="dots-group">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="status-badge">✨ inii samaak</div>
+      </div>
+
+      <div class="card-body">
+        <div class="image-wrapper">
+          <img src="hug.gif" class="main-gif" alt="cute hug">
+          <div class="glow-effect"></div>
+        </div>
+
+        <h2 class="title">happy val's daay</h2>
+        
+        <div class="message-box">
+          <p>ur #1 fans</p>
+          <p class="highlight">ich liebe dich bis zum mond und zurück.</p>
+        </div>
+
+        <button class="btn-primary" onclick="goPage('page-menu')">
+          <span>Okay, let's go!</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-menu">
+  <div class="menu-decorations">
+    <span class="float-item">🎀</span>
+    <span class="float-item">✨</span>
+    <span class="float-item">💖</span>
+    <span class="float-item">🌸</span>
+    <span class="float-item">☁️</span>
+  </div>
+
+  <div class="menu-container">
+    <div class="card menu-card glass-card">
+      
+      <div class="menu-header-vibrant">
+      <div class="loves">
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+      </div>
+        <div class="close-btn-container" onclick="goPage('page-hello')">
+          <div class="close-circle">
+            <span class="close-icon">✖</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-body">
+        <div class="profile-chat">
+          <div class="avatar-container">
+            <img src="shy-bashful.gif" class="menu-gif-cute" alt="cute cat">
+            <div class="online-indicator"></div>
+          </div>
+          <div class="bubble-message">
+             <span id="typingText" data-text="danke, dass du mein sicherer ort bist"></span>
+          </div>
+        </div>
+
+        <div class="menu-divider">
+          <span>SELECT YOUR MEMORY</span>
+        </div>
+
+        <div class="nav-button-grid">
+          <button class="nav-btn btn-note" onclick="goPage('page-note')">
+            <div class="icon-box">💌</div>
+            <span>NOTE</span>
+          </button>
+          <button class="nav-btn btn-pict" onclick="goPage('page-pict')">
+            <div class="icon-box">📸</div>
+            <span>PICT</span>
+          </button>
+          <button class="nav-btn btn-kaseta" onclick="goPage('page-kaseta')">
+            <div class="icon-box">🎵</div>
+            <span>PLAYLIST</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- PAGE NOTE -->
+<div class="page" id="page-note">
+  <div class="note-wrapper">
+    <div class="note-card">
+<div class="note-header">
+    <div class="header-tag">
+        <span class="tag-dot"></span>
+        <span class="tag-text">MEMO.TXT</span>
+    </div>
+    <div class="note-close-wrapper" onclick="goPage('page-menu')">
+        <span class="note-close-btn">✖</span>
+    </div>
+</div>
+
+      <div class="note-content">
+        <div class="photo-container">
+          <div class="polaroid-frame">
+            <img src="luve.gif" class="note-image" alt="cute bunny">
+          </div>
+          <div class="floating-loves">
+            <span onclick="addScore(this)">❤︎</span>
+            <span onclick="addScore(this)">❤︎</span>
+            <span onclick="addScore(this)">❤︎</span>
+          </div>
+        </div>
+
+        <div class="paper-area">
+          <div class="paper-line"></div>
+          <p class="note-text" id="noteTyping" data-text="alles liebe zum valentinstag, mein schatz. seit du in meinem leben bist, ist alles schöner. ich liebe dich mehr, als worte sagen können.">
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- PAGE PICT -->
+
+<div class="page" id="page-pict">
+  <div class="album-wrapper">
+    
+    <div class="pict-header card">
+      <div class="header-tag">
+        <span class="tag-dot"></span>
+        <span class="tag-text">MEMORIES.ZIP</span>
+      </div>
+      <div class="loves">
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+      </div>
+<div class="header-right">
+    <div class="close-wrapper" onclick="goPage('page-menu')">
+        <span class="album-close">✖</span>
+    </div>
+</div>
+    </div>
+
+    <div class="pict-grid card">
+      <div class="photo-grid" id="photoGrid">
+        <div class="photo-container show">
+           <div class="washi-tape"></div>
+           <img src="photo1.jpg" class="photo-item">
+        </div>
+        <div class="photo-container show">
+           <div class="washi-tape blue"></div>
+           <img src="photo2.jpg" class="photo-item">
+        </div>
+        <div class="photo-container show"><img src="photo3.jpg" class="photo-item"></div>
+        <div class="photo-container show"><img src="photo4.jpg" class="photo-item"></div>
+        <div class="photo-container show"><img src="photo5.jpg" class="photo-item"></div>
+        <div class="photo-container show"><img src="photo6.jpg" class="photo-item"></div>
+      </div>
+    </div>
+
+<div class="pict-message card">
+      <div class="message-inner">
+        <p>
+          "jedes pixel hält eine geschichte fest, und jedes bild bewahrt eine erinnerung an uns."
+        </p>
+      </div>
+    </div>
+
+<div class="note-footer-container" onclick="goPage('page-carousel')">
+  <div class="footer-pill">
+    <span>✨ Click here for more ✨</span>
+  </div>
+</div>
+
+  </div>
+</div>
+
+
+<div class="page" id="page-kaseta">
+  <div class="kaseta-wrapper">
+
+    <div class="love-game">
+      <div class="loves">
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+        <span onclick="addScore(this)">❤︎</span>
+      </div>
+
+<div class="header-right">
+    <span class="kaset-close" onclick="closeKaseta()">✖</span> 
+</div>
+    </div>
+
+    <div class="kaset-box">
+        <p class="kaset-text">This song reminds me of you</p>
+        <img src="cd1.png" class="kaset spin" onclick="openSpotify()">
+    </div>
+
+    <div class="kaset-footer">
+        <div class="instruction-badge">
+            <span class="sparkle">✨</span>
+            <p>Click the CD to play our playlist!</p>
+            <span class="sparkle">✨</span>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- SPOTIFY MODAL -->
+<div class="spotify-modal" id="spotifyModal">
+  <div class="spotify-card">
+    <div class="spotify-header">
+      <div class="header-left">
+        <span class="music-icon">🎵</span>
+        <span class="header-title">PLAYLIST.EXE</span>
+      </div>
+      <span class="spotify-close" onclick="closeSpotify()">✖</span>
+    </div>
+
+    <div class="spotify-body">
+      <h3>playlist for you ♡</h3>
+      
+      <div class="player-wrapper">
+          <div class="vinyl-container">
+              <img src="cd4.png" id="playerImg" class="player-img">
+          </div>
+          <div class="equalizer" id="equalizer">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          </div>
+      </div>
+
+      <ul class="song-list">
+        <li onclick="playSong(this,'3vkCueOmm7xQDoJ17W1Pm3')">my love mine all mine</li>
+        <li onclick="playSong(this,'1bYRmNYrXbzbLq1CEBZHRe')">a piece of you</li>
+        <li onclick="playSong(this,'4y5bvROuBDPr5fuwXbIBZR')">paper rings</li>
+      </ul>
+
+      <iframe id="spotifyPlayer" width="100%" height="80" frameborder="0" allow="autoplay; encrypted-media" style="display:none; margin-top:10px; border-radius:12px;"></iframe>
+    </div>
+
+    <div class="spotify-footer">
+        <span>Enjoy your music, Sweetie!</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="page" id="page-carousel">
+    <div class="card menu-card">
+        
+        <div class="main-window-header">
+            <div class="header-tag">
+                <span class="tag-text">MY_GALLERY.EXE</span>
+            </div>
+            
+            <div class="loves-center">
+                <span>❤︎</span><span>❤︎</span><span>❤︎</span>
+            </div>
+
+        <div class="game-right">
+            <span class="game-close" onclick="goPage('page-pict')">✖</span>
+        </div>
+        </div>
+
+        <div class="carousel-section">
+            <div class="aesthetic-window" style="box-shadow: none; border: none; width: 100%;">
+                <div class="window-bar">
+                    <div class="dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="window-title">OUR_STORY.JPG</div>
+                </div>
+
+                <div class="photo-container">
+                    <button class="nav-slide prev" onclick="changeSlide(-1)">◀</button>
+                    <div class="main-stage">
+                        <img id="mainSlide" src="photo1.jpg" alt="Moment">
+                    </div>
+                    <button class="nav-slide next" onclick="changeSlide(1)">▶</button>
+                </div>
+
+                <div class="window-bottom">
+                    <p id="photo-desc">captured with love</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
