@@ -1,0 +1,1642 @@
+* { 
+    box-sizing: border-box; 
+    font-family: 'Comic Sans MS', sans-serif, 'Chalkboard SE', 'Apple Chancery'; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body { 
+    margin: 0; 
+    background: #ffecec; 
+} 
+
+#page-pict {
+    /* display: flex;  <-- HAPUS BARIS INI */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; 
+    padding: 20px 0;
+    /* Biarkan .page.active yang mengatur display: flex */
+}
+
+/* Pastikan ini ada agar halaman lain benar-benar hilang saat tidak aktif */
+.page {
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.page.active {
+    display: flex !important; /* Paksa muncul hanya jika aktif */
+}
+
+/* GLOBAL SETTINGS */
+:root {
+  --primary-pink: #ff8fa3;
+  --soft-pink: #ffccd5;
+  --bg-gradient: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+}
+
+#page-hello {
+  background: #fff0f3;
+  font-family: 'Quicksand', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* DEKORASI BACKGROUND */
+.bg-decoration .circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 1;
+  opacity: 0.5;
+}
+.circle-1 { width: 300px; height: 300px; background: #ffc2d1; top: -100px; left: -50px; }
+.circle-2 { width: 250px; height: 250px; background: #ffe5ec; bottom: -50px; right: -50px; }
+
+/* CARD CONTAINER */
+.hello-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hello-card {
+  width: 400px !important; /* Paksa lebar 550px */
+  max-width: 90vw;        /* Tapi jangan lebih lebar dari layar HP */
+  min-height: 400px;      /* Tambahkan min-height agar proporsinya bagus */
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 45px;
+  box-shadow: 0 35px 70px rgba(255, 143, 163, 0.25);
+  padding: 0 !important;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+.hello-card:hover {
+  transform: translateY(-10px);
+}
+
+/* CARD HEADER */
+.card-header {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 143, 163, 0.1);
+}
+
+.dots-group span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+  background: var(--primary-pink);
+  opacity: 0.5;
+}
+
+.status-badge {
+  font-size: 10px;
+  font-weight: 800;
+  color: #ff4d6d;
+  background: #ffebef;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+/* CARD BODY */
+.card-body {
+  padding: 30px 25px 40px;
+  text-align: center;
+}
+
+.image-wrapper {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.main-gif {
+  width: 140px;
+  z-index: 2;
+  position: relative;
+  animation: float 3s infinite ease-in-out;
+}
+
+.glow-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: var(--primary-pink);
+  filter: blur(40px);
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.title {
+  font-family: 'Comic Sans MS', sans-serif, 'Chalkboard SE', 'Apple Chancery';
+  font-size: 22px;
+  color: #ff4d6d;
+  margin-bottom: 10px;
+}
+
+.message-box {
+  color: #880d1e;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.highlight {
+  font-weight: 700;
+  color: #ff4d6d;
+}
+
+/* BUTTON ANIMATION */
+.btn-primary {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #ff758f;
+  transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(255, 77, 109, 0.5);
+}
+
+.btn-primary svg {
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover svg {
+  transform: translateX(5px);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@media (max-width: 500px) {
+  .hello-card {
+    width: 95%; /* Otomatis mengecil di HP */
+    border-radius: 35px;
+  }
+  .title { font-size: 32px; }
+}
+
+
+
+/* BACKGROUND DECORATIONS */
+.menu-decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.float-item {
+    position: absolute;
+    font-size: 24px;
+    animation: floatRotate 4s infinite ease-in-out;
+}
+.float-item:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+.float-item:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+.float-item:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 2s; }
+.float-item:nth-child(4) { top: 70%; right: 10%; animation-delay: 0.5s; }
+.float-item:nth-child(5) { top: 5%; left: 50%; }
+
+@keyframes floatRotate {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-20px) rotate(20deg); }
+}
+
+/* CARD MENU UPGRADE */
+.menu-card.glass-card {
+    width: 550px !important;
+    background: #ffffff;
+    border: 4px solid #ffccd5; /* Border lebih tebal biar gaya retro-cute */
+    border-radius: 40px;
+    box-shadow: 15px 15px 0px #ffccd5; /* Shadow tebal ala pop-art */
+    overflow: hidden;
+}
+
+.menu-header-vibrant {
+    background: #ffccd5;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* CONTAINER UTAMA TOMBOL */
+.close-btn-container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek membal */
+}
+
+/* LINGKARAN TOMBOL */
+.close-circle {
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 2px solid #ff6f9c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 0px #ffccd5; /* Shadow bawah biar kayak tombol fisik */
+}
+
+/* ICON SILANG */
+.close-icon {
+  color: #ff6f9c;
+  font-size: 14px;
+  font-weight: 900;
+  transition: all 0.4s ease;
+}
+
+/* ANIMASI SAAT DI-HOVER (DISENTUH) */
+.close-btn-container:hover {
+  transform: scale(1.15) rotate(5deg); /* Membesar & miring dikit */
+}
+
+.close-btn-container:hover .close-circle {
+  background: #ff6f9c; /* Berubah jadi pink */
+  border-color: #ff6f9c;
+  box-shadow: 0 0px 0px #ffccd5; /* Shadow masuk ke dalam (kerasa ditekan) */
+  transform: translateY(2px);
+}
+
+.close-btn-container:hover .close-icon {
+  color: white; /* Silangnya jadi putih */
+  transform: rotate(90deg); /* Silangnya muter */
+}
+
+/* ANIMASI SAAT DIKLIK */
+.close-btn-container:active {
+  transform: scale(0.9); /* Efek menciut pas diklik */
+}
+
+/* CHAT BUBBLE */
+.profile-chat {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    align-items: center;
+}
+
+.menu-gif-cute {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #ffccd5;
+    background: white;
+}
+
+.bubble-message {
+    background: #fff0f3;
+    padding: 15px 20px;
+    border-radius: 20px;
+    color: #ff6f9c;
+    font-weight: 600;
+    font-size: 14px;
+    position: relative;
+    border: 2px solid #ffccd5;
+}
+
+/* DIVIDER */
+.menu-divider {
+    text-align: center;
+    margin: 10px 0;
+    position: relative;
+}
+.menu-divider span {
+    background: white;
+    padding: 0 15px;
+    color: #ffccd5;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+/* BUTTONS POP-UP */
+.nav-button-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 30px 40px;
+}
+
+.nav-btn {
+    border: none;
+    padding: 20px 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 12px;
+    box-shadow: 0 8px 0px rgba(0,0,0,0.05); /* Bayangan bawah biar kayak tombol beneran */
+}
+
+.icon-box { font-size: 30px; }
+
+.btn-note { background: #ffebef; color: #ff6f9c; }
+.btn-pict { background: #eef2ff; color: #6366f1; }
+.btn-kaseta { background: #f0fdf4; color: #22c55e; }
+
+.nav-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 0px rgba(0,0,0,0.05);
+}
+
+.btn-note:hover { background: #ffccd5; }
+.btn-pict:hover { background: #c7d2fe; }
+.btn-kaseta:hover { background: #bbf7d0; }
+
+
+
+
+
+
+/* CONTAINER HUJAN HATI */
+.falling-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Biar gak ngehalangin tombol klik */
+    z-index: 999;
+}
+
+.heart-drop {
+    position: absolute;
+    color: #ffb6c1;
+    font-size: 20px;
+    user-select: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+
+
+/* KASETA */
+.kaseta-wrapper {
+  width: 380px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,.2);
+}
+
+.love-game {
+  position: relative; /* Agar header-right bisa nempel di atas */
+  z-index: 5;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px;
+  background:#ffe0ea;
+}
+
+.loves {
+  display: flex;
+  gap: 10px;
+}
+
+.loves span {
+  font-size: 24px;
+  cursor: pointer;
+  animation: lovePulse 2.5s infinite;
+}
+
+.loves span:nth-child(1){animation-delay:0s}
+.loves span:nth-child(2){animation-delay:.3s}
+.loves span:nth-child(3){animation-delay:.6s}
+.loves span:nth-child(4){animation-delay:.9s}
+.loves span:nth-child(5){animation-delay:1.2s}
+
+@keyframes lovePulse {
+  0%{color:#ff4f8b}
+  50%{color:#fff}
+  100%{color:#ff4f8b}
+}
+
+.game-right {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.game-close {
+    font-size: 25px;
+    color: #ff6f9c;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.game-close:hover {
+  transform: scale(1.2);
+}
+
+.kaset-box {
+    padding: 20px;
+    text-align: center;
+    /* Menjaga kaset tetap di poros tengah */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.kaset-text {
+    margin-bottom: 20px;
+    color: #ff6f9c;
+    font-weight: bold;
+}
+
+.kaset {
+    width: 230px;
+    height: 230px;
+    cursor: pointer;
+    display: block;
+    /* KUNCI BIAR GAK GEPENG: */
+    object-fit: contain; 
+    
+    /* Biar muternya pas di tengah */
+    transform-origin: center center;
+    transition: filter 0.3s;
+}
+
+/* Tetap gunakan animasi yang tadi */
+.spin {
+    animation: puterKaset 8s linear infinite !important;
+}
+
+@keyframes puterKaset {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Efek pas kursor di atas kaset */
+.kaset:hover {
+    filter: drop-shadow(0 0 15px rgba(255, 183, 197, 0.8));
+}
+
+/* Efek pas diklik: Tetap muter tapi ada feedback ditekan */
+.kaset:active {
+    filter: brightness(0.9);
+}
+
+/* SPOTIFY MODAL */
+.spotify-modal {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.spotify-modal.active {
+  display:flex;
+}
+
+.spotify-card {
+  width:460px;
+  background:#1db954;
+  border-radius:22px;
+  padding:22px;
+  color:white;
+  position:relative;
+}
+
+.song-list {
+  max-height:200px;
+  overflow-y:auto;
+}
+
+.song-list li {
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.song-list li.active {
+  background:white;
+  color:#1db954;
+  font-weight:bold;
+}
+
+.equalizer {
+  display:none;
+  justify-content:center;
+  gap:6px;
+  margin-bottom:12px;
+}
+
+@keyframes eq {
+  0%{height:6px}
+  50%{height:28px}
+  100%{height:6px}
+}
+
+/* ================= FALLING HEART FIX ================= */
+.falling-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none; /* TAMBAHKAN INI: Supaya klik tembus ke tombol */
+    z-index: 1;
+}
+
+
+.falling-hearts span{
+  position:absolute;
+  top:-30px;
+  font-size:18px;
+  color:#ff9bb3;
+  opacity:.6;
+  animation:
+    heartFall linear infinite,
+    heartSway ease-in-out infinite;
+}
+
+@keyframes heartFall{
+  to{ top:110vh }
+}
+
+@keyframes heartSway{
+  0%{ transform:translateX(0) }
+  50%{ transform:translateX(30px) }
+  100%{ transform:translateX(0) }
+}
+
+
+/* ================= LOVE GAME REFINEMENT ================= */
+.loves span{
+  font-size:28px;
+  transition:.25s;
+}
+
+/* ================= KASETA BOX LEBIH MAHAL ================= */
+.kaseta-wrapper{
+  border:2px solid #f6b6c8;
+}
+
+.love-game{
+  background:linear-gradient(#ffd9e3,#ffeaf0);
+  border-bottom:1px solid #f6b6c8;
+}
+
+/* Pastikan kodingan ini ada di paling bawah CSS kamu */
+.kaset-close {
+    font-size: 22px !important; /* Paksa ukuran muncul */
+    color: #ff6f9c !important;
+    cursor: pointer;
+    display: flex !important; /* Pastikan dia punya ruang */
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+    z-index: 100; /* Biar gak tertutup elemen lain */
+}
+
+.kaset-close:hover {
+    transform: scale(1.2) rotate(90deg);
+    color: #ff1e6d;
+}
+
+
+
+
+/* ================= SPOTIFY WARNA DISAMAKAN ================= */
+/* Container Modal */
+.spotify-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Card */
+.spotify-card {
+    width: 340px;
+    background: #fff;
+    border-radius: 20px;
+    border: 2px solid #ffb7c5;
+    box-shadow: 0 10px 30px rgba(255, 183, 197, 0.4);
+    overflow: hidden;
+}
+
+/* ================= FOOTER INSTRUKSI KASETA ================= */
+.kaset-footer {
+    padding: 15px;
+    background: #fff; /* Latar putih bersih */
+    border-top: 1px dashed #ffccd5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instruction-badge {
+    background: #fff0f5; /* Pink sangat muda */
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid #ffb7c5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(255, 183, 197, 0.2);
+    /* Animasi biar gerak naik turun pelan */
+    animation: floatingInstruction 2s ease-in-out infinite;
+}
+
+.instruction-badge p {
+    font-size: 11px;
+    color: #ff6f9c;
+    font-weight: bold;
+    margin: 0;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+.sparkle {
+    font-size: 12px;
+}
+
+@keyframes floatingInstruction {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Tambahan: Efek hover pada kaset biar makin jelas bisa diklik */
+.kaset {
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.kaset:hover {
+    filter: drop-shadow(0 0 15px rgba(255, 183, 197, 0.7));
+    transform: scale(1.05);
+}
+
+/* Header */
+.spotify-header {
+    background: linear-gradient(to right, #ffb7c5, #ffccd5);
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+}
+
+.spotify-close {
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Bagian Foto (Ini Kuncinya biar Bulat) */
+.vinyl-container {
+    width: 150px;
+    height: 150px;
+    margin: 15px auto;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 0 20px rgba(255, 183, 197, 0.6);
+    overflow: hidden; /* Ini yang memotong gambar jadi bulat */
+    position: relative;
+    background-color: #eee; /* Warna cadangan jika gambar gagal load */
+}
+
+.player-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Biar gambar gak gepeng atau hilang proporsinya */
+    display: block;
+}
+
+/* Animasi Putar */
+.spinning {
+    animation: rotateVinyl 8s linear infinite !important;
+}
+
+@keyframes rotateVinyl {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* List Lagu */
+.song-list {
+    list-style: none;
+    padding: 10px 20px;
+}
+
+.song-list li {
+    background: #fff0f5;
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-radius: 12px;
+    color: #ff6f9c;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.song-list li:hover {
+    background: #ffe4ea;
+    border-color: #ffb7c5;
+}
+
+.song-list li.active {
+    background: #ffb7c5;
+    color: white;
+    font-weight: bold;
+}
+
+/* Equalizer Minimalis */
+.equalizer {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    height: 15px;
+    margin: 10px 0;
+}
+
+.bar {
+    width: 3px;
+    height: 100%;
+    background: #ffb7c5;
+    animation: bounce 0.5s ease-in-out infinite alternate;
+}
+.bar:nth-child(2) { animation-delay: 0.1s; }
+.bar:nth-child(3) { animation-delay: 0.2s; }
+
+@keyframes bounce {
+    from { height: 3px; }
+    to { height: 15px; }
+}
+
+.spotify-footer {
+    padding: 8px;
+    font-size: 9px;
+    color: #ffb7c5;
+    text-align: center;
+    border-top: 1px dashed #ffccd5;
+}
+
+
+/* ================= PLACEHOLDER PLAYER ================= */
+/* CONTAINER UTAMA */
+#page-pict {
+  padding: 30px 0;
+  perspective: 1000px; /* Memberikan efek depth 3D */
+}
+
+.album-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  animation: albumFade 0.8s ease-out;
+}
+
+/* CARD GENERAL STYLE */
+#page-pict .card {
+  width: 350px;
+  background: #ffffff;
+  border: 3px solid #ffccd5;
+  box-shadow: 8px 8px 0px #ffccd5; /* Shadow solid gaya modern retro */
+  border-radius: 20px;
+}
+
+/* HEADER STYLE */
+.pict-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px !important;
+  background: #fff0f3 !important;
+}
+
+.header-tag {
+  background: #ff6f9c;
+  padding: 4px 10px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-dot { width: 6px; height: 6px; background: white; border-radius: 50%; }
+.tag-text { color: white; font-size: 9px; font-weight: bold; letter-spacing: 1px; }
+
+/* GRID FOTO - MODERN SCRAPBOOK */
+.pict-grid {
+  padding: 20px !important;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #ffccd5 transparent;
+}
+
+/* ITEM FOTO POLAROID STYLE */
+.photo-container {
+  position: relative;
+  background: white;
+  padding: 8px 8px 20px 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+  
+  /* HAPUS ATAU UBAH BAGIAN INI */
+  transform: rotate(0deg); /* Pastikan jadi 0deg agar lurus */
+  transition: 0.4s ease;
+}
+
+/* HAPUS JUGA BAGIAN ODD/EVEN INI AGAR TIDAK MIRING SELANG-SELING */
+.photo-container:nth-child(odd) { --r: 0deg; }
+.photo-container:nth-child(even) { --r: 0deg; }
+
+/* SAAT HOVER BIAR TETAP KEREN */
+.photo-container:hover {
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
+}
+
+.photo-item {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+/* DEKORASI WASHI TAPE */
+.washi-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 20px;
+  background: rgba(255, 204, 213, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 2;
+  border-left: 2px dashed rgba(255,255,255,0.5);
+  border-right: 2px dashed rgba(255,255,255,0.5);
+}
+
+.washi-tape.blue { background: rgba(204, 229, 255, 0.6); }
+
+/* PESAN ALBUM */
+.pict-message {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.message-inner {
+  padding: 15px;
+  background: #fffafa;
+  border: 2px dashed #ffccd5;
+  margin: 10px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.message-inner p {
+  font-family: 'Comic Sans MS', ans-serif, cursive;
+  font-size: 13px;
+  color: #ff6f9c;
+  line-height: 1.5;
+}
+
+/* ANIMASI */
+@keyframes albumFade {
+  from { opacity: 0; transform: scale(0.9) translateY(30px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+
+
+.menu-card{
+  width:360px;
+  border-radius:22px;
+  border:2px solid #ff9db8;
+  overflow:hidden;
+}
+
+/* MESSAGE */
+.message-row{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  justify-content:center;
+  margin:16px auto 10px;
+  position:relative;
+  z-index:2;
+}
+
+.menu-gif{
+  width:95px;
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+.note-bubble{
+  background:#ffd1dc;
+  padding:14px 18px;
+  border-radius:18px;
+  max-width:210px;
+  font-size:13px;
+  line-height:1.5;
+  box-shadow:
+    0 6px 14px rgba(255,157,184,.45),
+    inset 0 0 0 1px #ff9db8;
+  position:relative;
+}
+
+.note-bubble::before{
+  content:'';
+  position:absolute;
+  left:-10px;
+  top:22px;
+  border-top:10px solid transparent;
+  border-bottom:10px solid transparent;
+  border-right:10px solid #ffd1dc;
+}
+
+/* DIVIDER */
+.divider-line{
+  width:75%;
+  height:1.5px;
+  margin:16px auto;
+  background:linear-gradient(to right,transparent,#ff9db8,transparent);
+}
+
+/* LOVE RAIN */
+.love-rain{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:1;
+}
+
+.love-drop{
+  position:absolute;
+  top:-20px;
+  color:#ff8fb3;
+  font-size:18px;
+  animation:fall linear forwards;
+  opacity:.85;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(120vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* RESPONSIVE */
+@media(max-width:420px){
+  .menu-card{width:94%}
+  .menu-gif{width:72px}
+  .note-bubble{font-size:12px}
+}
+
+/* NOTE PAGE */
+/* CONTAINER UTAMA */
+#page-note .note-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: fadeIn 0.8s ease;
+}
+
+/* CARD NOTE */
+#page-note .note-card {
+  width: 350px;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 4px solid #ffccd5;
+  box-shadow: 12px 12px 0px #ffccd5; /* Bayangan solid biar retro */
+  overflow: hidden;
+  position: relative;
+}
+
+/* HEADER TAG STYLE */
+#page-note .note-header {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff0f3;
+}
+
+.header-tag {
+  background: #ff6f9c;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-dot {
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+.tag-text {
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* PHOTO & LOVES PLACEMENT */
+.photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px 0;
+  position: relative;
+  gap: 15px;
+}
+
+.polaroid-frame {
+  background: white;
+  padding: 10px 10px 25px 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transform: rotate(-3deg);
+  transition: 0.3s;
+}
+
+.polaroid-frame:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.note-image {
+  width: 120px;
+  border-radius: 4px;
+}
+
+.floating-loves {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.floating-loves span {
+  font-size: 20px;
+  color: #ff6f9c;
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 0px #ffe0e6);
+  transition: 0.3s;
+}
+
+/* PAPER & TYPING AREA */
+.paper-area {
+  padding: 20px 25px 30px;
+  position: relative;
+}
+
+.note-text {
+  font-family: 'Comic Sans MS', sans-serif, 'Chalkboard SE', 'Apple Chancery';
+  font-size: 14px;
+  line-height: 1.8;
+  color: #8b5e5e;
+  text-align: left;
+  white-space: pre-line;
+}
+
+/* FOOTER DI ALBUM */
+.note-footer-container {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px; /* Biar gak terlalu mepet layar bawah */
+}
+
+.footer-pill {
+  background: white;
+  border: 2px solid #ffccd5;
+  padding: 10px 25px;
+  border-radius: 50px;
+  color: #ff6f9c;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 204, 213, 0.5);
+}
+
+.footer-pill:hover {
+  background: #ffccd5;
+  color: white;
+  transform: translateY(-3px) scale(1.05); /* Efek melayang pas di-hover */
+  box-shadow: 0 6px 20px rgba(255, 182, 193, 0.6);
+}
+
+
+
+
+
+/* ANIMASI */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container Utama */
+:root {
+    --accent: #ffb7c5;
+    --soft-pink: #fff0f3;
+}
+
+.carousel-section {
+    padding: 20px 60px; /* Tambahkan 60px di kiri & kanan */
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+.aesthetic-window {
+    width: 95%;
+    max-width: 550px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(255, 183, 197, 0.3);
+    border: 1px solid rgba(255, 183, 197, 0.5);
+    overflow: visible; /* UBAH DARI hidden KE visible */
+    animation: slideUp 0.8s ease;
+}
+
+/* Toolbar Atas ala Mac/Modern Window */
+.window-bar {
+    background: var(--soft-pink);
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dots { display: flex; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.red { background: #ff605c; }
+.yellow { background: #ffbd44; }
+.green { background: #00ca4e; }
+
+.window-title {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    color: #ff8fa3;
+    letter-spacing: 1px;
+    /* Tambahkan baris di bawah ini */
+    text-align: right; 
+    padding-right: 10px; /* Sesuaikan angkanya kalau mau agak menjauh dikit dari pinggir */
+}
+
+/* Area Foto */
+.photo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #fff;
+}
+
+#page-carousel .main-stage {
+    width: 100%;
+    /* Mengunci rasio kotak menjadi 7:5 secara otomatis */
+    aspect-ratio: 7 / 5; 
+    
+    /* Hapus height tetap (px) agar bisa fleksibel mengikuti lebar */
+    height: auto; 
+    
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: #fff0f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mainSlide {
+    width: 100%;
+    height: 100%;
+    /* KUNCI UTAMA: Foto akan di-crop otomatis agar pas di box tanpa gepeng */
+    object-fit: cover; 
+    
+    /* Jika ingin seluruh foto terlihat tanpa terpotong sama sekali, ganti ke:
+       object-fit: contain; 
+    */
+    
+    display: block;
+    transition: 0.5s opacity ease;
+}
+
+/* Class animasi dari JS */
+.slide-fade {
+    animation: photoInEffect 0.5s ease forwards;
+}
+
+@keyframes photoInEffect {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Tombol Navigasi di Luar Box */
+.nav-slide {
+    position: absolute;
+    z-index: 10;
+    background: white;
+    border: none;
+    color: var(--accent);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 183, 197, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.prev { left: -60px; }
+.next { right: -60px; }
+
+.nav-slide:hover {
+    background: var(--accent);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Agar di HP tombol masuk lagi (Responsive) */
+@media (max-width: 650px) {
+    .carousel-section { padding: 20px; }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    .aesthetic-window { overflow: hidden; }
+}
+
+/* Bottom Bar */
+.window-bottom {
+    padding: 15px;
+    text-align: center;
+    background: white;
+    border-top: 1px dashed var(--accent);
+}
+
+#photo-desc {
+    font-size: 13px;
+    color: #ff8fa3;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Animasi */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- HEADER KHUSUS PAGE CAROUSEL --- */
+
+/* Targetkan container utamanya agar tidak merembet ke page lain */
+#page-carousel .main-window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: linear-gradient(to right, #ffb7c5, #ffccd5);
+    border-bottom: 2px solid #f6b6c8;
+    border-radius: 14px 14px 0 0;
+    /* Reset posisi agar rapi */
+    position: relative;
+    top: 0;
+    right: 0;
+}
+
+#page-carousel .header-tag {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 3px 12px;
+    border-radius: 10px;
+    border: 1px solid #ff9db8;
+    display: flex;
+    align-items: center;
+}
+
+#page-carousel .tag-text {
+    font-size: 10px;
+    font-weight: bold;
+    color: #ff4f8b;
+    font-family: 'Courier New', monospace;
+}
+
+#page-carousel .loves-center {
+    display: flex;
+    gap: 10px;
+}
+
+#page-carousel .loves-center span {
+    font-size: 22px;
+    color: #ff4f8b;
+    cursor: pointer;
+    animation: lovePulse 2.5s infinite;
+}
+
+/* Tombol Close khusus Carousel */
+#page-carousel .game-close {
+    font-size: 22px;
+    color: #ff4f8b;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+    line-height: 1;
+
+    /* Paksa netralkan kodingan global */
+    position: static !important; 
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+
+    transform: translateY(1px) !important; 
+}
+
+#page-carousel .game-close:hover {
+    transform: translateY(4px) scale(1.3) rotate(90deg) !important;
+    color: #ff1e6d;
+}
+
+/* Khusus untuk menu-card yang ada di dalam page-carousel */
+#page-carousel .menu-card {
+    width: 90%;
+    max-width: 650px; /* Kita perlebar bungkusan luarnya */
+    padding: 10px;    /* Perkecil padding agar area foto lebih luas */
+}
+
+/* Atur Stage Foto agar rasionya 7:5 */
+#page-carousel .main-stage {
+    width: 100%;
+    aspect-ratio: 7 / 5; /* Ini akan otomatis mengatur tinggi secara proporsional */
+    height: auto; 
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff0f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Pastikan container foto tidak memotong tombol yang di luar */
+#page-carousel .photo-container {
+    position: relative;
+    overflow: visible; 
+    padding: 10px 0;
+}
+
+#page-carousel .game-close {
+    font-size: 22px; /* Ukuran khusus carousel */
+    transform: translateY(-8px); /* HANYA naik di page carousel */
+}
+
+/* 3. Hover KHUSUS untuk halaman Carousel */
+#page-carousel .game-close:hover {
+    transform: translateY(-8px) scale(1.2) rotate(90deg);
+}
+
+/* 4. Pastikan Loves di Carousel juga rapi */
+#page-carousel .loves-center {
+    display: flex;
+    gap: 10px;
+    transform: translateY(-2px); /* Biar sejajar sama teks kiri */
+}
+
+/* CONTAINER TOMBOL CLOSE */
+.header-right {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+.close-wrapper {
+    width: 30px;
+    height: 30px;
+    background: #ffccd5; /* Warna pink soft agar nyambung */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid white; /* Kasih border putih biar pop-out */
+}
+
+/* ICON NYA */
+.album-close {
+    font-size: 14px; /* Jangan kegedean biar elegan */
+    color: white;
+    font-weight: bold;
+    line-height: 1;
+    display: block;
+    margin-top: -1px; /* Trik manual biar beneran di tengah secara visual */
+}
+
+/* EFEK HOVER */
+.close-wrapper:hover {
+    background: #ff6f9c; /* Berubah jadi pink tua saat disentuh */
+    transform: rotate(90deg) scale(1.1); /* Efek muter biar asik */
+}
+
+/* CONTAINER TOMBOL CLOSE DI NOTE */
+.note-close-wrapper {
+    width: 28px;
+    height: 28px;
+    background: #ffdee5; /* Pink sangat muda agar senada dengan header-tag */
+    border-radius: 8px;   /* Pakai rounded square (kotak tumpul) agar beda dari album */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1.5px solid #ffccd5;
+}
+
+/* ICON SILANGNYA */
+.note-close-btn {
+    font-size: 12px;
+    color: #ff6f9c; /* Warna pink tua agar kontras */
+    font-weight: bold;
+    line-height: 1;
+    /* Netralkan properti lama */
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* EFEK SAAT HOVER */
+.note-close-wrapper:hover {
+    background: #ff6f9c;
+    border-color: #ff6f9c;
+    transform: scale(1.1);
+}
+
+.note-close-wrapper:hover .note-close-btn {
+    color: white; /* Silangnya jadi putih pas di-hover */
+}
+
+
+/* PERBAIKAN RESPONSIF GLOBAL */
+@media (max-width: 480px) {
+    /* Pastikan container halaman tidak punya padding berlebih */
+    .page {
+        padding: 10px;
+        justify-content: center; /* Tetap di tengah */
+    }
+
+    /* Bikin semua kartu lebarnya pas di layar HP */
+    .hello-card, 
+    .menu-card.glass-card, 
+    .note-card, 
+    #page-pict .card, 
+    .kaseta-wrapper,
+    .spotify-card {
+        width: 95% !important; /* Ambil 95% lebar layar HP */
+        max-width: none !important;
+        margin: 0 auto;
+    }
+
+    /* Sesuaikan ukuran teks & gambar di HP agar tidak meluap */
+    .title { font-size: 24px; }
+    .main-gif { width: 120px; }
+    
+    .nav-button-grid {
+        gap: 10px;
+        padding: 0 15px 30px;
+    }
+    
+    .icon-box { font-size: 24px; }
+    .nav-btn span { font-size: 10px; }
+
+    /* Perbaikan Carousel di HP */
+    .prev { left: 5px; opacity: 0.8; }
+    .next { right: 5px; opacity: 0.8; }
+    
+    .carousel-section {
+        padding: 20px 5px;
+    }
+}
+
+#page-carousel .main-stage {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important; /* Pakai rasio kotak (1:1) lebih aman di HP */
+    background: #fff;
+}
+
+#mainSlide {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* INI KUNCINYA: Foto gak bakal kepotong/gepeng */
+    border-radius: 10px;
+}
